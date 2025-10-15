@@ -1,4 +1,19 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const user = JSON.parse(localStorage.getItem(userKey));
 
+  // Add sample jobs if none exist
+  if (!localStorage.getItem(jobsKey)) {
+    const sampleJobs = [
+      { title: "Frontend Developer", company: "Techify", desc: "Build responsive user interfaces using React." },
+      { title: "Graphic Designer", company: "PixelWorks", desc: "Create modern, eye-catching brand visuals." },
+      { title: "Data Analyst", company: "Insight Analytics", desc: "Analyze and visualize company data for insights." },
+      { title: "Marketing Specialist", company: "AdVibe Media", desc: "Plan digital campaigns to boost brand growth." }
+    ];
+    localStorage.setItem(jobsKey, JSON.stringify(sampleJobs));
+  }
+
+  if (user) showJobBoard();
+});
   const jobsKey = 'jobs';
   const userKey = 'loggedInUser';
   let editingIndex = null;
@@ -26,22 +41,7 @@
     if (user.role === 'admin') {
       document.getElementById('addJobBtn').style.display = 'inline-block';
     }
-    document.addEventListener('DOMContentLoaded', () => {
-  const user = JSON.parse(localStorage.getItem(userKey));
-
-  // Add sample jobs if none exist
-  if (!localStorage.getItem(jobsKey)) {
-    const sampleJobs = [
-      { title: "Frontend Developer", company: "Techify", desc: "Build responsive user interfaces using React." },
-      { title: "Graphic Designer", company: "PixelWorks", desc: "Create modern, eye-catching brand visuals." },
-      { title: "Data Analyst", company: "Insight Analytics", desc: "Analyze and visualize company data for insights." },
-      { title: "Marketing Specialist", company: "AdVibe Media", desc: "Plan digital campaigns to boost brand growth." }
-    ];
-    localStorage.setItem(jobsKey, JSON.stringify(sampleJobs));
-  }
-
-  if (user) showJobBoard();
-});
+    
     displayJobs();
   }
 
@@ -158,4 +158,5 @@
     const user = JSON.parse(localStorage.getItem(userKey));
     if (user) showMain();
   });
+
 
