@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Board | Indeed Style</title>
+  <link rel="stylesheet" href="style.css"> 
+   
+</head>
+<body>
+
+<div class="login-container" id="loginContainer">
+  <h2>Login</h2>
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+</div>
+
+<div class="main-container" id="mainContainer" style="display:none;">
+  <!-- Left: Job List -->
+  <div class="left-panel">
+    <div class="header">
+      <h2>Job Board</h2>
+      <div>
+        <button id="addJobBtn" style="display:none;" onclick="openAddJobModal()">Add Job</button>
+        <button onclick="logout()">Logout</button>
+      </div>
+    </div>
+
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search for jobs or companies..." oninput="displayJobs()">
+    </div>
+
+    <div class="filter-container">
+      <label>Filter by date: </label>
+      <input type="date" id="dateFilter" onchange="displayJobs()">
+    </div>
+
+    <div id="jobList"></div>
+  </div>
+
+  <!-- Right: Job Details -->
+  <div class="right-panel" id="detailsPanel">
+    <h2 id="detailsTitle">Select a job to view details</h2>
+    <p><strong>Company:</strong> <span id="detailsCompany"></span></p>
+    <p id="detailsDesc"></p>
+  </div>
+</div>
+
+<!-- Add/Edit Job Modal -->
+<div class="modal" id="addJobModal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeAddJobModal()">×</button>
+    <h3 id="modalTitle">Add Job</h3>
+    <input type="text" id="jobTitle" placeholder="Job Title">
+    <input type="text" id="jobCompany" placeholder="Company">
+    <textarea id="jobDesc" placeholder="Job Description"></textarea>
+    <button onclick="saveJob()">Save</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
